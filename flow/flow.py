@@ -2,6 +2,7 @@ import prefect
 from prefect import task, Flow
 from datetime import timedelta
 from prefect.schedules import IntervalSchedule
+from prefect.storage import GitHub
 
 @task
 def hello_task():
@@ -10,7 +11,12 @@ def hello_task():
 
 schedule = IntervalSchedule(interval=timedelta(minutes=5))
 
-with Flow("hello-flow",  schedule=schedule) as flow:
+with Flow("my-first-flow",  schedule=schedule) as flow:
     hello_task()
 
-flow.run()
+flow.storage = GitHub(
+    path="flows/main.py",                    # location of flow file in repo
+    access_token_secret="GITHUB_ACCESS_TOKEN"   # name of personal access token secret
+)
+
+flow.register(project_name="product_graph")
