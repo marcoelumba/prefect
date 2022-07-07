@@ -15,7 +15,7 @@ with Flow("my-first-flow",  schedule=schedule) as flow:
     hello_task()
 
 flow.storage = GitHub(
-    path="flows/main.py",                    # location of flow file in repo
+    path="flows/flow.py",                    # location of flow file in repo
     access_token_secret="GITHUB_ACCESS_TOKEN"   # name of personal access token secret
 )
 
