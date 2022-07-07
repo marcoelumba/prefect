@@ -18,4 +18,5 @@ flow.storage = GitHub(
     access_token_secret="GITHUB_ACCESS_TOKEN"   # name of personal access token secret
 )
 
+flow.run()
 #flow.register(project_name="product_graph")
