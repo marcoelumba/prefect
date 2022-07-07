@@ -9,8 +9,6 @@ def hello_task():
     logger = prefect.context.get("logger")
     logger.info("Hello world!")
 
-schedule = IntervalSchedule(interval=timedelta(minutes=5))
-
 with Flow("my-first-flow",  schedule=schedule) as flow:
     hello_task()
 
